@@ -13,6 +13,18 @@ const Game = () => {
     }
   }).join(' ');
 
+  const [poem, setPoem] = useState([]);
+  const [playerCount, setPlayerCount] = useState(1);
+
+  const onPoemLineSubmit = (line) => {
+    let tempPoem = [...poem];
+    tempPoem.push(line);
+    setPlayerCount(playerCount + 1);
+    setPoem(tempPoem);
+    console.log(poem);
+  }
+
+
   return (
     <div className="Game">
       <h2>Game</h2>
@@ -27,9 +39,13 @@ const Game = () => {
 
       <RecentSubmission />
 
-      <PlayerSubmissionForm />
+      <PlayerSubmissionForm 
+      index={playerCount} 
+      sendSubmission={onPoemLineSubmit}
+      fields={FIELDS}
+      />
 
-      <FinalPoem />
+      <FinalPoem fullPoem = {poem}/>
 
     </div>
   );
