@@ -50,73 +50,18 @@ const PlayerSubmissionForm = (props) => {
           }
 
           {props.fields.map((field) => {
-          
-          if (field.key) {
-            return <input
-              name= {field.key}
-              key= {field.key}
-              placeholder={field.placeholder}
-              type="text" 
-              onChange={onInputChange}
-              value={formFields[field.key]}/>
-          } else {
-            return <div key={field}>{field}</div>;
-          }
-        
-          }
-          )}
-          
-
-
-
-{/* 
-
-          {formFields.the1}
-          <input
-            name= "adjective1"
-            placeholder="adjective"
-            type="text" 
-            onChange={onInputChange}
-            value={formFields.adjective1}/>
-            
-            <input
-            name= "noun1"
-            placeholder="noun"
-            type="text" 
-            onChange={onInputChange}
-            value={formFields.noun1}/>
-
-            <input
-            name= "adverb"
-            placeholder="adverb"
-            type="text" 
-            onChange={onInputChange}
-            value={formFields.adverb}/>
-            
-            <input
-            name= "verb"
-            placeholder="verb"
-            type="text" 
-            onChange={onInputChange}
-            value={formFields.verb}/>
-
-            {formFields.the2}
-
-            <input
-            name= "adjective2"
-            placeholder="adjective"
-            type="text" 
-            onChange={onInputChange}
-            value={formFields.adjective2}/>
-
-            <input
-            name= "noun2"
-            placeholder="noun"
-            type="text" 
-            onChange={onInputChange}
-            value={formFields.noun2}/>
-
-            {formFields.punctuation} */}
+            if (field.key) {
+              return <input
+                name= {field.key}
+                key= {field.key}
+                placeholder={field.placeholder}
+                type="text" 
+                onChange={onInputChange}
+                value={formFields[field.key]}/>
+            } else {
+              return <div key={field}>{field}</div>;
+            }
+          })}
 
         </div>
 
