@@ -15,14 +15,23 @@ const Game = () => {
 
   const [poem, setPoem] = useState([]);
   const [playerCount, setPlayerCount] = useState(1);
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
 
   const onPoemLineSubmit = (line) => {
-    let tempPoem = [...poem];
-    tempPoem.push(line);
-    setPlayerCount(playerCount + 1);
+    let tempPoem = [...poem, line];
+    // tempPoem.push(line);
     setPoem(tempPoem);
+    setPlayerCount(playerCount + 1);
+    setIsSubmitted(true);
     console.log(poem);
   }
+
+   const revealPoem = () => {
+    poem.map((line) => {
+        return line;
+      })
+    }
 
 
   return (
@@ -45,7 +54,10 @@ const Game = () => {
       fields={FIELDS}
       />
 
-      <FinalPoem fullPoem = {poem}/>
+      <FinalPoem 
+      submissions={poem}
+      isSubmitted={isSubmitted}
+      revealPoem={revealPoem}/>
 
     </div>
   );
