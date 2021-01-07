@@ -17,7 +17,17 @@ const PlayerSubmissionForm = (props) => {
     punctuation: '.'
   }
 
-  const [formFields, setFormFields] = useState(blankFields)
+  const [formFields, setFormFields] = useState({
+    the1: 'The',
+    adj1: '',
+    noun1: '',
+    adv: '',
+    verb: '',
+    the2: 'the',
+    adj2: '',
+    noun2: '',
+    punctuation: '.'
+  })
 
   const onLineSubmit = (event) => {
     event.preventDefault();
@@ -34,6 +44,7 @@ const PlayerSubmissionForm = (props) => {
     setFormFields(updatedFields);
   }
   
+  if (!props.finalized) {
   return (
     <div className="PlayerSubmissionForm">
       <h3>Player Submission Form for Player #{props.index}</h3>
@@ -67,7 +78,9 @@ const PlayerSubmissionForm = (props) => {
         </div>
       </form>
     </div>
-  );
+  );} else {
+    return null;
+  }
 }
 
 PlayerSubmissionForm.propTypes = {
@@ -80,6 +93,7 @@ PlayerSubmissionForm.propTypes = {
       placeholder: PropTypes.string.isRequired,
     }),
   ])).isRequired,
+  finalized: PropTypes.bool,
 }
 
 export default PlayerSubmissionForm;

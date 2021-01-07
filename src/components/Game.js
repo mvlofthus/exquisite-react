@@ -15,20 +15,19 @@ const Game = () => {
 
   const [poem, setPoem] = useState([]);
   const [playerCount, setPlayerCount] = useState(1);
-  const [isSubmitted, setIsSubmitted] = useState(false);
+  // const [isSubmitted, setIsSubmitted] = useState(false); 
   const [lastLine, setLastLine] = useState('')
   const [finalized, setFinalized] = useState(false)
 
   const onPoemLineSubmit = (line) => {
     let tempPoem = [...poem, line];
-    // tempPoem.push(line);
     setLastLine(line);
     setPoem(tempPoem);
     setPlayerCount(playerCount + 1);
-    setIsSubmitted(true);
+    // setIsSubmitted(true); originally misunderstood intention of isSubmitted as for individual submission rather than final poem
   }
 
-   const revealPoem = () => {
+  const revealPoem = () => {
     setFinalized(true);
     }
 
@@ -45,28 +44,23 @@ const Game = () => {
         { exampleFormat }
       </p>
 
-
-      {/* use CSS to change to display: none */}
-      <div style ={{ display: finalized ? 'none' : 'block' }}>
         
-        <div style={{ display: lastLine == '' ? 'none' : 'block' }}>
-          <RecentSubmission 
-          submission={lastLine}/>
-        </div> 
+      <RecentSubmission 
+      submission={lastLine}
+      finalized={finalized}/>
 
-        <PlayerSubmissionForm 
-        index={playerCount} 
-        sendSubmission={onPoemLineSubmit}
-        fields={FIELDS}
-        />
-      </div>
-      
-      
+
+      <PlayerSubmissionForm 
+      index={playerCount} 
+      sendSubmission={onPoemLineSubmit}
+      fields={FIELDS}
+      finalized={finalized}
+      />
+    
       <FinalPoem 
       submissions={poem}
-      isSubmitted={isSubmitted}
-      revealPoem={revealPoem}
-      finalized={finalized}/>
+      isSubmitted={finalized}
+      revealPoem={revealPoem}/>
 
     </div>
   );

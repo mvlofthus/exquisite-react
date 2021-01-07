@@ -1,36 +1,32 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import './FinalPoem.css';
 
 const FinalPoem = (props) => {
 
-  // const [gameOver, setGameOver] = useState('false')
-
-  const finalizeGame = () => {
-    // setGameOver(true);
-    props.revealPoem();
-  }
-
-  return (
+  if (props.isSubmitted) {
+    return (
     <div className="FinalPoem">
-      <section className="FinalPoem__poem" style ={{ display: props.finalized ? 'block' : 'none' }}>
+      <section className="FinalPoem__poem">
         <h3>Final Poem</h3>
 
+        
         <div>
-        {props.submissions.map((line) => {
-          return <p>{line}</p>;}
+        {props.submissions.map((line, index) => {
+          return <p key={index}>{line}</p>;}
         )}
         </div>
 
       </section>
-
-      <div className="FinalPoem__reveal-btn-container" style ={{ display: props.finalized ? 'none' : 'block' }}>
-        <input type="button" value="We are finished: Reveal the Poem" className="FinalPoem__reveal-btn" onClick={finalizeGame} />
+    </div>)
+  } else {
+    return (
+      <div className="FinalPoem">
+        <div className="FinalPoem__reveal-btn-container" >
+          <input type="button" value="We are finished: Reveal the Poem" className="FinalPoem__reveal-btn" onClick={props.revealPoem} />
+        </div>
       </div>
-
-      
-    </div>
-  );
+  )}
 }
 
 FinalPoem.propTypes = {
