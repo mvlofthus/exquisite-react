@@ -17,17 +17,7 @@ const PlayerSubmissionForm = (props) => {
     punctuation: '.'
   }
 
-  const [formFields, setFormFields] = useState({
-    the1: 'The',
-    adj1: '',
-    noun1: '',
-    adv: '',
-    verb: '',
-    the2: 'the',
-    adj2: '',
-    noun2: '',
-    punctuation: '.'
-  })
+  const [formFields, setFormFields] = useState(blankFields)
 
   const onLineSubmit = (event) => {
     event.preventDefault();
