@@ -23,15 +23,12 @@ const PlayerSubmissionForm = (props) => {
     event.preventDefault();
     
     let line = Object.values(formFields).join(' ');
-    console.log(line);
 
     props.sendSubmission(line);
     setFormFields(blankFields);
   }
 
   const onInputChange = (event) => {
-    console.log(`changing ${event.target.name} to ${event.target.value}`);
-    
     const updatedFields = {...formFields};
     updatedFields[event.target.name] = event.target.value;
     setFormFields(updatedFields);

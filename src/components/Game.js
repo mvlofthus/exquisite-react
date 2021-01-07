@@ -17,6 +17,7 @@ const Game = () => {
   const [playerCount, setPlayerCount] = useState(1);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [lastLine, setLastLine] = useState('')
+  const [finalized, setFinalized] = useState(false)
 
   const onPoemLineSubmit = (line) => {
     let tempPoem = [...poem, line];
@@ -25,13 +26,10 @@ const Game = () => {
     setPoem(tempPoem);
     setPlayerCount(playerCount + 1);
     setIsSubmitted(true);
-    console.log(poem);
   }
 
    const revealPoem = () => {
-    poem.map((line) => {
-        return line;
-      })
+    setFinalized(true);
     }
 
 
@@ -47,19 +45,28 @@ const Game = () => {
         { exampleFormat }
       </p>
 
-      <RecentSubmission 
-      submission={lastLine}/>
 
-      <PlayerSubmissionForm 
-      index={playerCount} 
-      sendSubmission={onPoemLineSubmit}
-      fields={FIELDS}
-      />
+      {/* use CSS to change to display: none */}
+      <div style ={{ display: finalized ? 'none' : 'block' }}>
+        
+        <div style={{ display: lastLine == '' ? 'none' : 'block' }}>
+          <RecentSubmission 
+          submission={lastLine}/>
+        </div> 
 
+        <PlayerSubmissionForm 
+        index={playerCount} 
+        sendSubmission={onPoemLineSubmit}
+        fields={FIELDS}
+        />
+      </div>
+      
+      
       <FinalPoem 
       submissions={poem}
       isSubmitted={isSubmitted}
-      revealPoem={revealPoem}/>
+      revealPoem={revealPoem}
+      finalized={finalized}/>
 
     </div>
   );
