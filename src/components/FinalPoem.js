@@ -3,16 +3,7 @@ import PropTypes from 'prop-types';
 import './FinalPoem.css';
 
 const FinalPoem = (props) => {
-  const fullPoem = () => {
-    if (props.isSubmitted === true) {
-      props.submissions.map((line) => {
-        return <p>{line}</p>;
-      })
-    } else { 
-        return 'no submissions yet';
-      }
-    }
-  
+
 
   return (
     <div className="FinalPoem">
@@ -25,9 +16,7 @@ const FinalPoem = (props) => {
         {props.submissions.map((line) => {
           return <p>{line}</p>;}
         )}
-
-        {/* {fullPoem()} */}
-       </div>
+        </div>
 
       </section>
 

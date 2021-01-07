@@ -16,11 +16,12 @@ const Game = () => {
   const [poem, setPoem] = useState([]);
   const [playerCount, setPlayerCount] = useState(1);
   const [isSubmitted, setIsSubmitted] = useState(false);
-
+  const [lastLine, setLastLine] = useState('')
 
   const onPoemLineSubmit = (line) => {
     let tempPoem = [...poem, line];
     // tempPoem.push(line);
+    setLastLine(line);
     setPoem(tempPoem);
     setPlayerCount(playerCount + 1);
     setIsSubmitted(true);
@@ -46,7 +47,8 @@ const Game = () => {
         { exampleFormat }
       </p>
 
-      <RecentSubmission />
+      <RecentSubmission 
+      submission={lastLine}/>
 
       <PlayerSubmissionForm 
       index={playerCount} 
